@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,15 +42,6 @@
             text-decoration: none;
         }
 
-        .forgot-password {
-            color: #d32f2f; /* Red color for the forgot-password link */
-            font-size: .875rem;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
         .btn-sign-in {
             color: #fff !important; /* White text for the button */
             background-color: #d32f2f !important; /* Red color for the button */
@@ -62,11 +53,11 @@
             border-color: #a10d0d !important;
         }
 
-        .sign-in, .forgot-password {
+        .sign-in {
             color: #d32f2f !important; /* Red color for the links */
         }
 
-        .sign-in:hover, .forgot-password:hover {
+        .sign-in:hover {
             text-decoration: underline;
         }
 
