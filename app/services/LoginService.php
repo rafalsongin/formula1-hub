@@ -12,13 +12,13 @@ class LoginService {
         $this->db = Database::getInstance();
     }
 
-    public function authenticateUser($username, $password) {
+    public function authenticateUser($username, $password) : bool {
         
         return $this->db->authenticateUser($username, $password);
     }
 
     public function registerUser($username, $password, $email) {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         return $this->db->registerUser($username, $hashedPassword, $email);
     }

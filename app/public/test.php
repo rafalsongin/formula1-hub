@@ -20,21 +20,17 @@ try {
     echo "Connection error: " . $exception->getMessage();
 }
 
+echo "<br>";
+echo "<br>";
+echo "<br>";
 
-$username = 'test';
-$password = 'test';
-$email = 'test@test.com';
+$password = "test2";
+$password_hash = "";
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-try {
-    $stmt = $conn->prepare("INSERT INTO users (username, password_hash, email) VALUES (:username, :password_hash, :email)");
-    $stmt->execute(['username' => $username, 'password_hash' => $hashedPassword, 'email' => $email]);
-
-    echo "Registration successful";
-    
-    return true;
-} catch (PDOException $e) {
-    error_log("Registration failed: " . $e->getMessage(), 3, "/logfile.log");
-    return false;
+if (password_verify($password, $password_hash)) {
+    echo "Password matches";
+} else {
+    echo "Password does not match";
 }
+

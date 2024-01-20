@@ -39,27 +39,31 @@ class Database
         return self::$instance;
     }
 
-    public function registerUser($username, $password, $email)
+    public function registerUser($username, $password_hash, $email)
     {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
+        $sql = "INSERT INTO users (username, password_hash, email) VALUES (:username, :password, :email)";
+        $stmt = $this->conn->prepare($sql);
+        
         try {
-            $stmt = $this->conn->prepare("INSERT INTO users (username, password_hash, email) VALUES (:username, :password_hash, :email)");
-            $stmt->execute(['username' => $username, 'password_hash' => $hashedPassword, 'email' => $email]);
+            /*$stmt = $this->conn->prepare("INSERT INTO users (username, password_hash, email) VALUES (:username, :password_hash, :email)");
+            $stmt->execute(['username' => $username, 'password_hash' => $password_hash, 'email' => $email]);*/
+
+            $stmt->execute(['username' => $username, 'password' => $password_hash, 'email' => $email]);
+            echo "<p>Registration successful. You can now <a href='/login'>login</a>.</p>";
             
             return true;
         } catch (PDOException $e) {
-            error_log("Registration failed: " . $e->getMessage(), 3, "/logfile.log");
+//            error_log("Registration failed: " . $e->getMessage(), 3, "/logfile.log");
             return false;
         }
     }
 
-    public function authenticateUser($username, $password) {
-        $stmt = $this->conn->prepare("SELECT password FROM users WHERE username = :username");
+    public function authenticateUser($username, $password) : bool {
+        $stmt = $this->conn->prepare("SELECT id, username, password_hash FROM users WHERE username = :username");
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && password_verify($password, $user['password_hash'])) {
             return true;
         }
         return false;

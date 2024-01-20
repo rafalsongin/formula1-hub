@@ -29,7 +29,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['user'])): ?>
+                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                        <li class="nav-item">
+                            <span class="navbar-text">
+                                <?php echo htmlspecialchars($_SESSION['username']); ?>
+                            </span>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/logout">Logout</a>
                         </li>

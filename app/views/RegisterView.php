@@ -83,7 +83,7 @@
 <div class="container">
     <div class="login-wrapper">
         <h2 class="text-center mb-4">Join us! <a href="#" class="sign-in">Register</a></h2>
-        <form method="post" action="/register-endpoint">
+        <form method="post" action="/auth-endpoint">
             <div class="form-group">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
             </div>

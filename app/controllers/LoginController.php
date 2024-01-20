@@ -10,7 +10,7 @@ class LoginController {
         $this->loginService = new LoginService();
     }
     
-    public function registerEndpoint() {
+    public function authEndpoint() {
         if (isset($_POST['register'])) {
             $this->register();
         } else if (isset($_POST['login'])) {
@@ -19,7 +19,7 @@ class LoginController {
             $this->logout();
         }
 
-        header('Location: /');
+        // header('Location: /');
     }
 
     public function openLoginPage() {
@@ -33,12 +33,16 @@ class LoginController {
     public function login() {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
-        
+
         if ($this->loginService->authenticateUser($username, $password)) {
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
+//            session_regenerate_id(); // Regenerate session ID
+
+            header('Location: /');
         } else {
-            echo "Invalid credentials";
+            
+            header('Location: /login');
         }
     }
 
@@ -48,12 +52,20 @@ class LoginController {
         $email = $_POST['email'] ?? '';
 
         if (!$this->loginService->registerUser($username, $password, $email)) {
-            error_log("User not registered: " . $username(), 3, "/logfile.log");
+            // success
+        } else {
+            // error
         }
     }
 
     public function logout() {
+        // Unset all session variables
+        $_SESSION = array();
+
+        // Destroy the session
         session_destroy();
+
+        // Redirect to homepage or login page
         header('Location: /');
     }
 }

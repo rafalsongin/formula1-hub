@@ -93,9 +93,9 @@
 <div class="container">
     <div class="login-wrapper">
         <h2 class="text-center mb-4">Already a client? <a href="#" class="sign-in">Sign In</a></h2>
-        <form method="post" action="/login">
+        <form method="post" action="/auth-endpoint">
             <div class="form-group">
-                <input type="email" class="form-control" name="username" id="username" placeholder="Email" required>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>

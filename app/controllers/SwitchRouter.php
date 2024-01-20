@@ -13,47 +13,53 @@ class SwitchRouter
 
         switch ($uri) {
             case '':
-                require __DIR__ . '/HomeController.php';
+                require_once __DIR__ . '/HomeController.php';
                 $controller = new \HomeController();
                 $controller->index();
                 break;
             case 'drivers':
-                require __DIR__ . '/DriverController.php';
+                require_once __DIR__ . '/DriverController.php';
                 $controller = new \DriverController();
+                $this->loggedInUserCheck();
                 $controller->index();
                 break;
             case 'races':
-                require __DIR__ . '/RaceController.php';
+                require_once __DIR__ . '/RaceController.php';
                 $controller = new \RaceController();
                 $controller->index();
                 break;
             case 'login':
-                require __DIR__ . '/LoginController.php';
+                require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
                 $controller->openLoginPage();
                 break;
             case 'register':
-                require __DIR__ . '/LoginController.php';
+                require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
                 $controller->openRegisterPage();
                 break;
-            case 'register-endpoint':
-                require __DIR__ . '/LoginController.php';
+            case 'auth-endpoint':
+                require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
-                $controller->registerEndpoint();
+                $controller->authEndpoint();
                 break;
             case 'logout':
-                require __DIR__ . '/LoginController.php';
+                require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
                 $controller->logout();
                 break;
-            case 'registration-failed':
-                include __DIR__ . '/../views/RegistrationFailed.html';
+            case 'test':
+                include '../public/test.php';
                 break;
             default:
-                echo '404 not found';
                 http_response_code(404);
                 break;
+        }
+    }
+    
+    private function loggedInUserCheck() {
+        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+            header('Location: /login');
         }
     }
 }

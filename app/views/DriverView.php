@@ -1,6 +1,10 @@
 <?php
-
 namespace App\Views;
+
+use Exception;
+
+require_once '../config/init.php';
+
 class DriverView
 {
     public function showDrivers($drivers)
