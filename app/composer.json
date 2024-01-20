@@ -7,14 +7,16 @@
             "name": "Mark de Haan (Ahrnuld)"
         }
     ],
-    "require": {},
+    "require": {
+        "ext-pdo": "*"
+    },
     "autoload": {
         "psr-4": {
             "App\\": ".",
             "App\\Controllers\\": "./controllers",
             "App\\Models\\": "./models",
             "App\\Services\\": "./services",
-            "App\\Repositories\\": "./repositories",
+            "App\\Repositories\\": "./database",
             "App\\Views\\": "./views"            
         }
     }
