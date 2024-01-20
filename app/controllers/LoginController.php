@@ -53,8 +53,10 @@ class LoginController {
 
         if (!$this->loginService->registerUser($username, $password, $email)) {
             // success
+            // TODO: redirect to "successful registration" page
         } else {
             // error
+            // TODO: redirect to "registration failed" page
         }
     }
 
