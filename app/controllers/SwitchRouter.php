@@ -14,8 +14,7 @@ class SwitchRouter
         switch ($uri) {
             case '':
                 require_once __DIR__ . '/HomeController.php';
-                $controller = new \HomeController();
-                $controller->index();
+                new \HomeController();
                 break;
             case 'drivers':
                 require_once __DIR__ . '/DriverController.php';
@@ -26,7 +25,14 @@ class SwitchRouter
             case 'races':
                 require_once __DIR__ . '/RaceController.php';
                 $controller = new \RaceController();
+                $this->loggedInUserCheck();
                 $controller->index();
+                break;
+            case 'comments':
+                require_once __DIR__ . '/CommentsController.php';
+                $controller = new \CommentsController();
+                $this->loggedInUserCheck();
+                $controller->showComments();
                 break;
             case 'login':
                 require_once __DIR__ . '/LoginController.php';
@@ -36,20 +42,38 @@ class SwitchRouter
             case 'register':
                 require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
-                $controller->openRegisterPage();
-                break;
-            case 'auth-endpoint':
-                require_once __DIR__ . '/LoginController.php';
-                $controller = new \LoginController();
-                $controller->authEndpoint();
+                $controller->openRegistrationPage();
                 break;
             case 'logout':
                 require_once __DIR__ . '/LoginController.php';
                 $controller = new \LoginController();
                 $controller->logout();
                 break;
-            case 'test':
-                include '../public/test.php';
+            case 'auth-endpoint':
+                require_once __DIR__ . '/LoginController.php';
+                $controller = new \LoginController();
+                $controller->authEndpoint();
+                break;
+            case 'add-comment':
+                require_once __DIR__ . '/CommentsController.php';
+                $controller = new \CommentsController();
+                $controller->addComment();
+                break;
+            case 'delete-comment':
+                require_once __DIR__ . '/CommentsController.php';
+                $controller = new \CommentsController();
+                $controller->deleteComment();
+                break;
+            case 'update-comment':
+                require_once __DIR__ . '/CommentsController.php';
+                $controller = new \CommentsController();
+                $controller->updateComment();
+                break;
+            case 'races.json':
+                include '../public/races_json.php';
+                break;
+            case 'drivers.json':
+                include '../public/drivers_json.php';
                 break;
             default:
                 http_response_code(404);

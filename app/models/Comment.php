@@ -1,37 +1,19 @@
 <?php
 
-class Comment
-{
-    private int $id;
-    private string $username;
-    private string $comment;
-    private string $date;
+class Comment {
+    public $id;
+    public $userId;
+    public $username;
+    public $text;
+    public $createdAt;
+    public $updatedAt;
 
-    public function __construct($id, $username, $comment, $date)
-    {
+    public function __construct($id, $userId, $username, $text, $createdAt, $updatedAt) {
         $this->id = $id;
+        $this->userId = $userId;
         $this->username = $username;
-        $this->comment = $comment;
-        $this->date = $date;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-    
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    public function getDate()
-    {
-        return $this->date;
+        $this->text = $text;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
     }
 }

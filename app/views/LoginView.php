@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Already a client? Sign In</title>
+    <title>Sign In</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Ensure the path to styles.css is correct -->
     <link href="../public/css/styles.css" rel="stylesheet" type="text/css">
     
     <style>
@@ -33,22 +32,17 @@
 
         h2 {
             font-size: 1.5rem;
-            color: #d32f2f; /* Red color for the header */
+            color: black; /* Red color for the header */
             margin-bottom: 1rem;
             text-align: center;
         }
 
-        .sign-in {
-            color: #d32f2f; /* Red color for the sign-in link */
-            text-decoration: none;
-        }
-
-        .forgot-password {
-            color: #d32f2f; /* Red color for the forgot-password link */
+        .register-here {
+            color: black; /* Red color for the forgot-password link */
             font-size: .875rem;
         }
 
-        .forgot-password:hover {
+        .register-here:hover {
             text-decoration: underline;
         }
 
@@ -63,11 +57,11 @@
             border-color: #a10d0d !important;
         }
 
-        .sign-in, .forgot-password {
+        .sign-in, .login-here {
             color: #d32f2f !important; /* Red color for the links */
         }
 
-        .sign-in:hover, .forgot-password:hover {
+        .sign-in:hover, .login-here:hover {
             text-decoration: underline;
         }
 
@@ -92,7 +86,7 @@
 
 <div class="container">
     <div class="login-wrapper">
-        <h2 class="text-center mb-4">Already a client? <a href="#" class="sign-in">Sign In</a></h2>
+        <h2 class="text-center mb-4">Already a client? Sign In</h2>
         <form method="post" action="/auth-endpoint">
             <div class="form-group">
                 <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
@@ -101,8 +95,8 @@
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
             </div>
             <!-- Use custom class for the sign-in button -->
-            <button type="submit" class="btn btn-block btn-sign-in" name="login">SIGN IN</button>
-            <p class="text-center mt-3"><a href="#" class="forgot-password">Forgot your password?</a></p>
+            <button type="submit" class="btn btn-block btn-sign-in" name="login" rel="/auth-endpoint">SIGN IN</button>
+            <p class="text-center mt-3"><a href="/register" class="register-here">Register here</a></p>
         </form>
     </div>
 </div>

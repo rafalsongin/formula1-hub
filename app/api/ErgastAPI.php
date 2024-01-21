@@ -4,17 +4,24 @@ class ErgastAPI {
     private string $year = '2023';
 
     public function getDrivers() {
-        $url = $this->baseUrl . '/' . $this->year . '/drivers.json';
+        $url = $this->baseUrl . '/' . $this->year . '/1' . '/drivers.json';
         $response = file_get_contents($url);
         $data = json_decode($response, true);
-        return $data['MRData']['DriverTable']['Drivers'];
+        
+        $filteredDrivers = array_filter($data['MRData']['DriverTable']['Drivers'], function ($driver) {
+            $lastName = strtolower($driver['familyName']);
+            return $lastName !== 'de vries' && $lastName !== 'lawson';
+        });
+        
+        return array_values($filteredDrivers);
     }
     
     public function getRaces() {
-        $year = date('Y');
+        $year = "2023";
         $url = $this->baseUrl . '/' . $year . '.json';
         $response = file_get_contents($url);
         $data = json_decode($response, true);
+        
         return $data['MRData']['RaceTable']['Races'];
     }
 }

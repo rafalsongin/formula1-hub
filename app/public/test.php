@@ -1,36 +1,22 @@
-<?php
-
-require_once '../config/dbconfig.php';
-
-$type = DB_TYPE;
-$host = DB_SERVER;
-$db_name = DB_NAME;
-$username = DB_USERNAME;
-$password = DB_PASSWORD;
-
-$conn = null;
-
-try {
-    $dsn = "{$type}:host={$host};dbname={$db_name}";
-    $conn = new PDO($dsn, $username, $password);
-    $conn->exec("set names utf8");
-
-    echo "Connected successfully";
-} catch (PDOException $exception) {
-    echo "Connection error: " . $exception->getMessage();
-}
-
-echo "<br>";
-echo "<br>";
-echo "<br>";
-
-$password = "test2";
-$password_hash = "";
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-if (password_verify($password, $password_hash)) {
-    echo "Password matches";
-} else {
-    echo "Password does not match";
-}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('assets/images/homepage.jpg');
+            background-size: cover; /* Cover the entire page */
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Welcome to the Home Page</h1>
+    <p>This is your home page content. You can customize it as needed.</p>
+</div>
+</body>
+</html>

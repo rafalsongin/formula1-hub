@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Views;
 
 class RaceView
@@ -7,54 +6,49 @@ class RaceView
     public function showRaces($races)
     {
         include('header.php');
-        
-        // HTML header
-        echo '<!DOCTYPE html>';
-        echo '<html lang="en">';
-        echo '<head>';
-        echo '<meta charset="UTF-8">';
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo '<title>F1 Races</title>';
-        echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">';
-        echo '</head>';
-        echo '<body>';
-
-        // Bootstrap container
-        echo '<div class="container mt-5">';
-        echo '<h1>F1 Races</h1>';
-
-        // Check if there are any races to display
-        if (empty($races)) {
-            echo '<p>No races available.</p>';
-        } else {
-            // Display race information in a Bootstrap table
-            echo '<table class="table">';
-            echo '<thead>';
-            echo '<tr>';
-            echo '<th>Race Name</th>';
-            echo '<th>Date</th>';
-            echo '<th>Track</th>';
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-
-            foreach ($races as $race) {
-                echo '<tr>';
-                echo '<td>' . $race['raceName'] . '</td>';
-                echo '<td>' . $race['date'] . '</td>';
-                echo '<td>' . $race['Circuit']['circuitName'] . '</td>';
-                echo '</tr>';
-            }
-
-            echo '</tbody>';
-            echo '</table>';
-        }
-
-        // Bootstrap container closing tag
-        echo '</div>';
-
-        // HTML footer
-        echo '</body>';
-        echo '</html>';
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="/css/race_styles.css">
+        </head>
+        <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">F1 Races 2023</h1>
+            <?php if (empty($races)): ?>
+                <p>No races available.</p>
+            <?php else: ?>
+                <div class="row">
+                    <?php foreach ($races as $race): ?>
+                        <div class="col-md-4">
+                            <div class="race-card">
+                                <?php
+                                $circuitId = $race['Circuit']['circuitId'];
+                                $circuitUrl = $race['Circuit']['url'];
+                                $imageSrc = "/assets/images/circuits/{$circuitId}.png";
+                                ?>
+                                <a href="<?= $circuitUrl ?>" target="_blank">
+                                    <img src="<?= $imageSrc ?>" alt="<?= $race['raceName'] ?>" class="circuit-card">
+                                </a>
+                                <h3><?= $race['raceName'] ?></h3>
+                                <p>
+                                    <strong>Date:</strong> <?= htmlspecialchars($race['date']) ?><br>
+                                    <strong>Circuit:</strong> <?= $race['Circuit']['circuitName'] ?><br>
+                                    <strong>City:</strong> <?= $race['Circuit']['Location']['locality'] ?><br>
+                                    <strong>Country:</strong> <?= $race['Circuit']['Location']['country'] ?><br>
+                                    <strong><a href="<?= $race['url'] ?>" target="_blank">Report</a></strong>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        </body>
+        </html>
+        <?php
     }
 }

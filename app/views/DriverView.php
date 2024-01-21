@@ -10,54 +10,57 @@ class DriverView
     public function showDrivers($drivers)
     {
         include('header.php');
-        
-        // HTML header
-        echo '<!DOCTYPE html>';
-        echo '<html lang="en">';
-        echo '<head>';
-        echo '<meta charset="UTF-8">';
-        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-        echo '<title>F1 Drivers</title>';
-        echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">';
-        echo '</head>';
-        echo '<body>';
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="/css/driver_styles.css">
+            <style>
+                .driver-card {
+                    border: 1px solid #ddd;
+                    padding: 15px;
+                    margin-bottom: 20px;
+                }
 
-        // Bootstrap container
-        echo '<div class="container mt-5">';
-        echo '<h1>F1 Drivers</h1>';
-
-        // Check if there are any drivers to display
-        if (empty($drivers)) {
-            echo '<p>No drivers available.</p>';
-        } else {
-            // Display driver information in a Bootstrap table
-            echo '<table class="table">';
-            echo '<thead>';
-            echo '<tr>';
-            echo '<th>Driver ID</th>'; // Added Driver ID
-            echo '<th>Driver Name</th>';
-            echo '<th>Nationality</th>';
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-
-            foreach ($drivers as $driver) {
-                echo '<tr>';
-                echo '<td>' . $driver['driverId'] . '</td>'; // Display Driver ID
-                echo '<td>' . $driver['givenName'] . ' ' . $driver['familyName'] . '</td>';
-                echo '<td>' . $driver['nationality'] . '</td>';
-                echo '</tr>';
-            }
-
-            echo '</tbody>';
-            echo '</table>';
-        }
-
-        // Bootstrap container closing tag
-        echo '</div>';
-
-        // HTML footer
-        echo '</body>';
-        echo '</html>';
+                .driver-image {
+                    max-width: 100px;
+                    max-height: 100px;
+                    border-radius: 50%;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="container mt-5">
+            <h1 class="mb-4">F1 Drivers 2023</h1>
+            <?php if (empty($drivers)): ?>
+                <p>No drivers available.</p>
+            <?php else: ?>
+                <div class="row">
+                    <?php foreach ($drivers as $driver): ?>
+                        <div class="col-md-4">
+                            <div class="driver-card">
+                                <?php
+                                $driverFullName = strtolower(str_replace(' ', '_', $driver['givenName'] . ' ' . $driver['familyName']));
+                                $imageSrc = "/assets/images/drivers/{$driverFullName}.png";
+                                ?>
+                                <img src="<?= $imageSrc ?>" alt="<?= $driver['givenName'] . ' ' . $driver['familyName'] ?>" class="driver-image">
+                                <h3><?= $driver['givenName'] . ' ' . $driver['familyName'] ?></h3>
+                                <p>
+                                    <strong>Number:</strong> <?= $driver['permanentNumber'] ?><br>
+                                    <strong>Nationality:</strong> <?= $driver['nationality'] ?><br>
+                                    <strong><a href="<?= $driver['url'] ?>">Biography</a></strong>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        </body>
+        </html>
+        <?php
     }
 }

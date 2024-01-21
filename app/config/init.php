@@ -3,11 +3,11 @@
 session_start();
 
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 300)) {
-        // last request was more than 30 minutes ago (1800 seconds)
-        session_unset();     // unset $_SESSION variable
-        session_destroy();   // destroy session data
-        header('Location: /login'); // redirect to login page
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 600)) {
+        // last request was more than 10min ago
+        session_unset();
+        session_destroy(); 
+        header('Location: /login');
     }
-    $_SESSION['last_activity'] = time(); // update last activity time
+    $_SESSION['last_activity'] = time();
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join us! Register</title>
+    <title>Register</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/css/styles.css" rel="stylesheet" type="text/css"> <!--Not working -->
 
@@ -32,14 +32,9 @@
 
         h2 {
             font-size: 1.5rem;
-            color: #d32f2f; /* Red color for the header */
+            color: black; /* Red color for the header */
             margin-bottom: 1rem;
             text-align: center;
-        }
-
-        .sign-in {
-            color: #d32f2f; /* Red color for the sign-in link */
-            text-decoration: none;
         }
 
         .btn-sign-in {
@@ -53,20 +48,20 @@
             border-color: #a10d0d !important;
         }
 
-        .sign-in {
-            color: #d32f2f !important; /* Red color for the links */
-        }
-
-        .sign-in:hover {
-            text-decoration: underline;
-        }
-
         /* Ensure form-control overrides Bootstrap styles */
         .form-control {
             border: 1px solid #ced4da !important;
             box-shadow: none !important; /* Remove Bootstrap's box-shadow if any */
         }
 
+        .login-here {
+            color: black; /* Red color for the forgot-password link */
+            font-size: .875rem;
+        }
+
+        .login-here:hover {
+            text-decoration: underline;
+        }
 
         /* Responsive padding */
         @media (max-width: 768px) {
@@ -82,7 +77,7 @@
 
 <div class="container">
     <div class="login-wrapper">
-        <h2 class="text-center mb-4">Join us! <a href="#" class="sign-in">Register</a></h2>
+        <h2 class="text-center mb-4">New here? Register</h2>
         <form method="post" action="/auth-endpoint">
             <div class="form-group">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
@@ -93,11 +88,10 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
             </div>
-            
-            <button type="submit" class="btn btn-block btn-sign-in" name="register">REGISTER</button>
+            <button type="submit" class="btn btn-block btn-sign-in" name="register" rel="/auth-endpoint">REGISTER</button>
+            <p class="text-center mt-3"><a href="/login" class="login-here">Login here</a></p>
         </form>
     </div>
 </div>
-
 </body>
 </html>

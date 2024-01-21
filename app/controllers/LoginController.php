@@ -17,27 +17,26 @@ class LoginController {
             $this->login();
         } else if (isset($_POST['logout'])) {
             $this->logout();
+        } else {
+            http_response_code(404);
         }
-
-        // header('Location: /');
     }
 
     public function openLoginPage() {
         include '../views/LoginView.php';
     }
-
-    public function openRegisterPage() {
+    
+    public function openRegistrationPage() {
         include '../views/RegisterView.php';
     }
 
     public function login() {
         $username = $_POST['username'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        if ($this->loginService->authenticateUser($username, $password)) {
+        $input_password = $_POST['password'] ?? '';
+        
+        if ($this->loginService->authenticateUser($username, $input_password)) {
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
-//            session_regenerate_id(); // Regenerate session ID
 
             header('Location: /');
         } else {
@@ -51,12 +50,10 @@ class LoginController {
         $password = $_POST['password'] ?? '';
         $email = $_POST['email'] ?? '';
 
-        if (!$this->loginService->registerUser($username, $password, $email)) {
-            // success
-            // TODO: redirect to "successful registration" page
+        if ($this->loginService->registerUser($username, $password, $email)) {
+            include_once '../views/RegistrationSuccessful.php';
         } else {
-            // error
-            // TODO: redirect to "registration failed" page
+            // TODO: redirect to "registration failed" page if f.e. username already exists
         }
     }
 
