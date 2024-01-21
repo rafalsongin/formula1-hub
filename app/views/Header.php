@@ -22,11 +22,11 @@
             background-color: black;
         }
         a.nav-link {
-            color: white !important; /* Adds white color to links with specified classes */
+            color: white !important;
             font-weight: bold;
         }
         a:hover {
-            color: red !important; /* Change color on hover */
+            color: red !important;
             font-weight: bold;
         }
         .username {

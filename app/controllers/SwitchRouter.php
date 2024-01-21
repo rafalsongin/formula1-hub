@@ -35,23 +35,23 @@ class SwitchRouter
                 $controller->showComments();
                 break;
             case 'login':
-                require_once __DIR__ . '/LoginController.php';
-                $controller = new \LoginController();
+                require_once __DIR__ . '/AuthController.php';
+                $controller = new \AuthController();
                 $controller->openLoginPage();
                 break;
             case 'register':
-                require_once __DIR__ . '/LoginController.php';
-                $controller = new \LoginController();
+                require_once __DIR__ . '/AuthController.php';
+                $controller = new \AuthController();
                 $controller->openRegistrationPage();
                 break;
             case 'logout':
-                require_once __DIR__ . '/LoginController.php';
-                $controller = new \LoginController();
+                require_once __DIR__ . '/AuthController.php';
+                $controller = new \AuthController();
                 $controller->logout();
                 break;
             case 'auth-endpoint':
-                require_once __DIR__ . '/LoginController.php';
-                $controller = new \LoginController();
+                require_once __DIR__ . '/AuthController.php';
+                $controller = new \AuthController();
                 $controller->authEndpoint();
                 break;
             case 'add-comment':

@@ -4,28 +4,28 @@ require_once '../config/init.php';
 require_once '../Repositories/Database.php';
 require_once '../views/CommentsView.php';
 require_once '../services/CommentsService.php';
-require_once '../services/LoginService.php';
+require_once '../services/AuthService.php';
 
-use App\Repositories\Database;
+use App\Services\AuthService;
 use App\Services\CommentsService;
 use App\Views\CommentsView;
 
 class CommentsController
 {
     private $view;
-    private $comments_service;
-    private $user_service;
+    private $commentsService;
+    private $authService;
 
     public function __construct()
     {
         $this->view = new CommentsView();
-        $this->comments_service = new CommentsService();
-        $this->user_service = new LoginService();
+        $this->commentsService = new CommentsService();
+        $this->authService = new AuthService();
     }
 
     public function showComments()
     {
-        $comments = $this->comments_service->getComments();
+        $comments = $this->commentsService->getComments();
         $this->view->showComments($comments);
     }
 
@@ -36,13 +36,13 @@ class CommentsController
         $username = $_SESSION['username'] ?? null;
         $commentText = $_POST['commentText'] ?? '';
         
-        $user_id = $this->user_service->getUserId($username);
+        $user_id = $this->authService->getUserId($username);
         
         if ($user_id && trim($commentText) !== '') {
-            $success = $this->comments_service->addComment($user_id, trim($commentText));
+            $success = $this->commentsService->addComment($user_id, trim($commentText));
 
             if ($success) {
-                $newComment = $this->comments_service->getLatestComment();
+                $newComment = $this->commentsService->getLatestComment();
                 echo json_encode(['success' => true, 'message' => 'Comment added successfully', 'comment' => $newComment]);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Failed to add comment']);
@@ -58,7 +58,7 @@ class CommentsController
         $commentId = $data['commentId'] ?? null;
 
         if ($commentId) {
-            $success = $this->comments_service->deleteComment($commentId);
+            $success = $this->commentsService->deleteComment($commentId);
 
             if ($success) {
                 echo json_encode(['success' => true, 'message' => 'Comment deleted successfully']);
@@ -79,11 +79,11 @@ class CommentsController
         $newText = $data['newText'] ?? '';
 
         if ($commentId && trim($newText) !== '') {
-            $success = $this->comments_service->updateComment($commentId, trim($newText));
+            $success = $this->commentsService->updateComment($commentId, trim($newText));
 
             if ($success) {
                 // Fetch the updated comment including the username
-                $updatedComment = $this->comments_service->getCommentById($commentId);
+                $updatedComment = $this->commentsService->getCommentById($commentId);
                 echo json_encode(['success' => true, 'message' => 'Comment updated successfully', 'comment' => $updatedComment]);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Failed to update comment']);

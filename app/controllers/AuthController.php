@@ -1,13 +1,16 @@
 <?php
-require_once '../services/LoginService.php';
+
+use App\Services\AuthService;
+
 require_once '../config/init.php';
+require_once '../services/AuthService.php';
 
 
-class LoginController {
-    private LoginService $loginService;
+class AuthController {
+    private AuthService $authService;
 
     public function __construct() {
-        $this->loginService = new LoginService();
+        $this->authService = new AuthService();
     }
     
     public function authEndpoint() {
@@ -33,8 +36,10 @@ class LoginController {
     public function login() {
         $username = $_POST['username'] ?? '';
         $input_password = $_POST['password'] ?? '';
+
+        $username = strtolower($username);
         
-        if ($this->loginService->authenticateUser($username, $input_password)) {
+        if ($this->authService->authenticateUser($username, $input_password)) {
             $_SESSION['username'] = $username;
             $_SESSION['logged_in'] = true;
 
@@ -50,21 +55,16 @@ class LoginController {
         $password = $_POST['password'] ?? '';
         $email = $_POST['email'] ?? '';
 
-        if ($this->loginService->registerUser($username, $password, $email)) {
+        if ($this->authService->registerUser($username, $password, $email)) {
             include_once '../views/RegistrationSuccessful.php';
         } else {
-            // TODO: redirect to "registration failed" page if f.e. username already exists
-        }
+            include_once '../views/RegistrationFailed.php';
+        } 
     }
 
     public function logout() {
-        // Unset all session variables
         $_SESSION = array();
-
-        // Destroy the session
         session_destroy();
-
-        // Redirect to homepage or login page
         header('Location: /');
     }
 }

@@ -45,42 +45,4 @@ class Database
     {
         return $this->conn;
     }
-
-    public function registerUser($username, $password_hash, $email)
-    {
-        $sql = "INSERT INTO users (username, password_hash, email) VALUES (:username, :password, :email)";
-        $stmt = $this->conn->prepare($sql);
-        
-        try {
-            $stmt->execute(['username' => $username, 'password' => $password_hash, 'email' => $email]);
-            
-            return true;
-        } catch (PDOException $e) {
-//            error_log("Registration failed: " . $e->getMessage(), 3, "/logfile.log");
-            return false;
-        }
-    }
-
-    public function authenticateUser($username, $input_password) : bool {
-        $stmt = $this->conn->prepare("SELECT id, username, password_hash FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($input_password, $user['password_hash'])) {
-            return true;
-        }
-        return false;
-    }
-    
-    public function getUserId(mixed $username)
-    {
-        $stmt = $this->conn->prepare("SELECT id FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            return $user['id'];
-        }
-        return null;
-    }
 }

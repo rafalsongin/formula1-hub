@@ -7,7 +7,6 @@ require_once '../models/Comment.php';
 
 use Comment;
 use PDO;
-use PDOException;
 
 class CommentsRepository
 {

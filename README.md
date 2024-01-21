@@ -1,29 +1,29 @@
-# Basic PHP MVC demo
+# Formula 1 Hub
+
 This repository demonstrates how the MVC design pattern can be implemented using PHP.
 
-It contains a docker configuration with:
-* NGINX webserver
-* PHP FastCGI Process Manager with PDO MySQL support
-* MariaDB (GPL MySQL fork)
-* PHPMyAdmin
+### Users 
+This demo includes user accounts for authentication:
+* User: speedracer99
+* Password: f1hubuser1
 
-## Installation
 
-1. Install Docker Desktop on Windows or Mac, or Docker Engine on Linux.
-1. Clone the project
+* User: f1fanatic2023
+* Password: f1hubuser2
 
-## Usage
+### JSON Data
+JSON data can be accessed from the following directories:
 
-In a terminal, run:
-```bash
-docker-compose up
-```
+* /races.json for race data
+* /drivers.json for driver data
 
-NGINX will now serve files in the app/public folder. Visit localhost in your browser to check.
-PHPMyAdmin is accessible on localhost:8080
+### Database Initialization
+To initialize the database with sample data, you can import the SQL file provided:
 
-If you want to stop the containers, press Ctrl+C. 
-Or run:
-```bash
-docker-compose down
-```
+* /sql/formula1-hub.sql
+
+### Data Sources
+This project utilizes data from Ergast API for Formula 1 data. 
+* https://ergast.com/mrd/
+
+Feel free to explore the MVC structure and customize this demo as needed for your own PHP projects!
