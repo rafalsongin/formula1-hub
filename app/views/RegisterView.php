@@ -14,7 +14,7 @@
 <div class="container">
     <div class="login-wrapper">
         <h2 class="text-center mb-4">New here? Register</h2>
-        <form method="post" action="/auth-endpoint">
+        <form method="post" action="/auth/registerAuth">
             <div class="form-group">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
             </div>
@@ -24,8 +24,8 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-block btn-sign-in" name="register" rel="/auth-endpoint">REGISTER</button>
-            <p class="text-center mt-3"><a href="/login" class="second-option">Login here</a></p>
+            <button type="submit" class="btn btn-block btn-sign-in" name="register">REGISTER</button>
+            <p class="text-center mt-3"><a href="/auth/login" class="second-option">Login here</a></p>
         </form>
     </div>
 </div>

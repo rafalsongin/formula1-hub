@@ -2,15 +2,13 @@
 
 require_once '../config/init.php';
 require_once '../Repositories/Database.php';
-require_once '../views/CommentsView.php';
 require_once '../services/CommentsService.php';
 require_once '../services/AuthService.php';
 
 use App\Services\AuthService;
 use App\Services\CommentsService;
-use App\Views\CommentsView;
 
-class CommentsController
+class CommentController
 {
     private $view;
     private $commentsService;
@@ -18,18 +16,16 @@ class CommentsController
 
     public function __construct()
     {
-        $this->view = new CommentsView();
         $this->commentsService = new CommentsService();
         $this->authService = new AuthService();
     }
 
-    public function showComments()
-    {
+    public function index() {
         $comments = $this->commentsService->getComments();
-        $this->view->showComments($comments);
+        include '../views/CommentsView.php';
     }
 
-    public function addComment()
+    public function add()
     {
         header('Content-Type: application/json');
         
@@ -52,7 +48,7 @@ class CommentsController
         }
     }
 
-    public function deleteComment()
+    public function delete()
     {
         $data = json_decode(file_get_contents('php://input'), true);
         $commentId = $data['commentId'] ?? null;
@@ -70,7 +66,7 @@ class CommentsController
         }
     }
 
-    public function updateComment()
+    public function update()
     {
         header('Content-Type: application/json');
 

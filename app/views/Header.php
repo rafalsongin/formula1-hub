@@ -6,38 +6,7 @@
     <title>F1 HUB</title>
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: "Segoe UI", sans-serif;
-        }
-        .navbar-logo {
-            border-radius: 20%;
-            margin: 5px 20px 5px 5px;
-        }
-        .navbar {
-            position: relative;
-            z-index: 1000;
-            background-color: black;
-        }
-        a.nav-link {
-            color: white !important;
-            font-weight: bold;
-        }
-        a:hover {
-            color: red !important;
-            font-weight: bold;
-        }
-        .username {
-            color: white;
-            font-weight: bold;
-        }
-        .nav-item {
-            margin-right: 10px;
-            font-size: 1.2em;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
 
@@ -49,20 +18,23 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-<!--                    <li>-->
-<!--                        <a class="navbar-brand" href="/">Formula 1 Hub</a>-->
-<!--                    </li>-->
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/races">Races</a>
+                        <a class="nav-link" href="/race">Races</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/drivers">Drivers</a>
+                        <a class="nav-link" href="/driver">Drivers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/comments">Comments</a>
+                        <a class="nav-link" href="/constructor">Constructors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/standing">Standings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comment">Comments</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -73,14 +45,14 @@
                             </span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <a class="nav-link" href="/auth/logout">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
+                            <a class="nav-link" href="/auth/login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
+                            <a class="nav-link" href="/auth/register">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>

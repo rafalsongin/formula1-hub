@@ -1,0 +1,20 @@
+.race-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.circuit-card {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.race-card h3 {
+    text-align: center;
+    margin-top: 0;
+}

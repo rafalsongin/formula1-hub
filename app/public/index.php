@@ -1,6 +1,6 @@
 <?php
-require_once('../controllers/SwitchRouter.php');
+require_once('../PatternRouter.php');
 require_once '../config/init.php';
 
-$router = new SwitchRouter();
+$router = new PatternRouter();
 $router->route();

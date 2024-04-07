@@ -1,0 +1,37 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.navbar-logo {
+    border-radius: 20%;
+    margin: 5px 20px 5px 5px;
+}
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+    background-color: black;
+}
+
+a.nav-link {
+    color: white !important;
+    font-weight: bold;
+}
+
+a:hover {
+    color: red !important;
+    font-weight: bold;
+}
+
+.username {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-item {
+    margin-right: 10px;
+    font-size: 1.2em;
+}

@@ -47,7 +47,7 @@ class SwitchRouter
             case 'logout':
                 require_once __DIR__ . '/AuthController.php';
                 $controller = new \AuthController();
-                $controller->logout();
+                $controller->logoutAuth();
                 break;
             case 'auth-endpoint':
                 require_once __DIR__ . '/AuthController.php';
@@ -80,8 +80,9 @@ class SwitchRouter
                 break;
         }
     }
-    
-    private function loggedInUserCheck() {
+
+    private function loggedInUserCheck()
+    {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             header('Location: /login');
         }

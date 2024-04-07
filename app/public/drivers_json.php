@@ -3,7 +3,7 @@
 require_once '../api/ErgastAPI.php';
 
 $api = new ErgastAPI();
-$races = $api->getDrivers();
+$constructors = $api->getDrivers();
 
 header('Content-Type: application/json');
-echo json_encode($races);
+echo json_encode($constructors);

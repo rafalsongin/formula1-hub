@@ -15,7 +15,7 @@
     <div class="message-wrapper">
         <h2 class="text-center mb-4">Registration Successful</h2>
         <p class="text-center">You have successfully registered. Please log in to continue.</p>
-        <p><a href="/login" class="btn btn-block btn-sign-in">Log in</a></p>
+        <p><a href="/auth/login" class="btn btn-block btn-sign-in">Log in</a></p>
     </div>
 </div>
 </body>

@@ -3,9 +3,7 @@ namespace App\Repositories;
 
 require_once '../config/init.php';
 require_once '../config/dbconfig.php';
-require_once '../models/Comment.php';
 
-use Comment;
 use PDO;
 use PDOException;
 

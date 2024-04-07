@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var formData = new FormData();
         formData.append('commentText', commentText);
 
-        fetch('/add-comment', {
+        fetch('/comment/add', {
             method: 'POST',
             body: formData
         })
@@ -54,7 +54,7 @@ function addCommentToPage(comment) {
 
 function deleteComment(commentId) {
     if (confirm('Are you sure you want to delete this comment?')) {
-        fetch('/delete-comment', {
+        fetch('/comment/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ function deleteComment(commentId) {
 function updateComment(commentId) {
     var newText = document.getElementById('editText-' + commentId).value;
 
-    fetch('/update-comment', {
+    fetch('/comment/update', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -112,9 +112,8 @@ function showEditInterface(commentId) {
     var commentDiv = document.getElementById('comment-' + commentId);
     var currentText = commentDiv.querySelector('.card-text').innerText;
 
-    // Replace text with an input field
-    var inputField = `<textarea id="editText-${commentId}">${currentText}</textarea>`;
-    var saveButton = `<button onclick="updateComment(${commentId})">Save</button>`;
+    var inputField = `<textarea id="editText-${commentId}" class="form-control">${currentText}</textarea>`;
+    var saveButton = `<button onclick="updateComment(${commentId})" class="btn btn-primary mt-2">Save</button>`;
 
     commentDiv.querySelector('.card-body').innerHTML = inputField + saveButton;
 }

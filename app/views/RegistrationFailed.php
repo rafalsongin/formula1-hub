@@ -15,7 +15,7 @@
     <div class="message-wrapper">
         <h2 class="text-center mb-4">Registration Failed!</h2>
         <p class="text-center">You couldn't register. User with this username or email already exists.</p>
-        <p><a href="/register" class="btn btn-block btn-sign-in">Register</a></p>
+        <p><a href="/auth/register" class="btn btn-block btn-sign-in">Register</a></p>
     </div>
 </div>
 

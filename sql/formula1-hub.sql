@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 21, 2024 at 10:51 PM
+-- Generation Time: Apr 07, 2024 at 09:46 PM
 -- Server version: 11.1.3-MariaDB-1:11.1.3+maria~ubu2204
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `formula1-hub`
 --
+CREATE DATABASE IF NOT EXISTS `formula1-hub` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `formula1-hub`;
 
 -- --------------------------------------------------------
 
@@ -43,7 +45,7 @@ INSERT INTO `comments` (`id`, `user_id`, `text`, `created_at`, `updated_at`) VAL
 (33, 1661, 'Excited about the 2023 season! The new aerodynamic regulations are really shaking things up. Can\'t wait to see how the teams adapt.', '2024-01-21 22:34:08', '2024-01-21 22:34:08'),
 (34, 1661, 'I\'m rooting for Verstappen this year. He\'s shown incredible skill, especially in those tight corner battles. Let\'s see if he can maintain his momentum!', '2024-01-21 22:34:15', '2024-01-21 22:34:15'),
 (35, 1662, 'The engine improvements this season are fascinating. It\'s all about finding that perfect balance between power and efficiency. Teams like Mercedes and Ferrari are really pushing the limits.', '2024-01-21 22:35:31', '2024-01-21 22:35:31'),
-(37, 1662, 'I\'m impressed by the rookies this season. They\'re not just there to make up the numbers; they\'re really challenging the veterans. Makes for some exciting races!', '2024-01-21 22:35:46', '2024-01-21 22:35:46'),
+(37, 1662, 'I\'m impressed by the rookies this season. They\'re not just there to make up the numbers; they\'re really challenging the veterans. Makes for some exciting races!', '2024-01-21 22:35:46', '2024-04-07 21:29:33'),
 (38, 1661, 'The Bahrain Grand Prix was a thriller! The battle for the podium spots was intense. Loving the competitive energy this season.', '2024-01-21 22:36:06', '2024-01-21 22:36:06'),
 (39, 1662, 'Anyone else think the Miami Grand Prix is going to be a game-changer this year? The track layout looks challenging, and the drivers will really have to be on top of their game.', '2024-01-21 22:38:52', '2024-01-21 22:38:52'),
 (40, 1654, 'Hey!!! I am new here!', '2024-01-21 22:49:18', '2024-01-21 22:49:18');
@@ -96,7 +98,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`

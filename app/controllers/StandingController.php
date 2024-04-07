@@ -1,10 +1,9 @@
 <?php
-
 require_once __DIR__ . '/../api/ErgastAPI.php';
 require_once '../config/init.php';
 
 
-class DriverController
+class StandingController
 {
     private ErgastAPI $api;
 
@@ -15,7 +14,9 @@ class DriverController
 
     public function index()
     {
-        $drivers = $this->api->getDrivers();
-        include '../views/DriverView.php';
+        $driverStandings = $this->api->getDriverStandings();
+        $constructorStandings = $this->api->getConstructorStandings();
+
+        include '../views/StandingView.php';
     }
 }
